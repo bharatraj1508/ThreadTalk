@@ -14,4 +14,8 @@ export class AuthService {
   register(user: User) {
     return this.http.post<any>(`${this.url}/auth/signup`, user);
   }
+
+  login(user: Object) {
+    return this.http.post<any>(`${this.url}/auth/signin`, user);
+  }
 }
