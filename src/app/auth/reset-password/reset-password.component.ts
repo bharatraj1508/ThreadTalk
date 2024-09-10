@@ -51,8 +51,9 @@ export class ResetPasswordComponent {
     }
 
     const passObj = {
-      password: passwordResetForm.value.passowrd,
+      password: passwordResetForm.value.password,
     };
+    console.log(passObj);
     this.authService.resetPassword(passObj, this.token).subscribe(
       (res) => {
         this.success = true;

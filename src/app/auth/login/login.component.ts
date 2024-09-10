@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../core/services/authentication/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,8 @@ export class LoginComponent {
 
   constructor(
     private authService: AuthService,
-    private router: ActivatedRoute
+    private router: ActivatedRoute,
+    private route: Router
   ) {
     this.router.queryParams.subscribe((params) => {
       if (params['t']) {
@@ -41,10 +43,10 @@ export class LoginComponent {
 
     this.authService.login(existingUser).subscribe(
       (res) => {
+        localStorage.setItem('t', res.access_token);
         loginForm.reset();
         this.resetErrorAndValidation();
-        console.log(res);
-        //store access token to local storage here and nvaigate the user to dashboard
+        this.route.navigate(['/d']);
       },
       (error) => {
         if (error.status == 401 || 404) {

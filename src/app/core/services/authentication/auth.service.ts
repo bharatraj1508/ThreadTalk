@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../../interfaces/user';
 import { Env } from '../env';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +10,29 @@ import { Env } from '../env';
 export class AuthService {
   private url = Env.apiUrl;
   headers = new HttpHeaders().set('Content-Type', 'application/json');
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
+
+  isAuthenticated(): boolean {
+    const token = localStorage.getItem('t');
+    if (!token) return false;
+
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      const expirationDate = new Date(payload.exp * 1000);
+      if (expirationDate < new Date()) {
+        return false;
+      }
+      return true;
+    } catch (error) {
+      console.error('Error parsing token:', error);
+      return false;
+    }
+  }
+
+  doLogout() {
+    localStorage.removeItem('t');
+    this.router.navigate(['/auth/login']);
+  }
 
   register(user: User) {
     return this.http.post<any>(`${this.url}/auth/signup`, user);
