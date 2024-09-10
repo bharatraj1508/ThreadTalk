@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../core/services/authentication/auth.service';
 
 @Component({
@@ -11,8 +12,20 @@ export class LoginComponent {
   formError: boolean = false;
   error: boolean = false;
   message: string = '';
+  token: string = '';
+  verified: boolean = false;
 
-  constructor(public authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private router: ActivatedRoute
+  ) {
+    this.router.queryParams.subscribe((params) => {
+      if (params['t']) {
+        this.token = params['t'];
+        this.checkEmailVerification();
+      }
+    });
+  }
 
   onSubmit(loginForm: NgForm) {
     const existingUser = {
@@ -57,5 +70,21 @@ export class LoginComponent {
     this.message = '';
     this.formError = false;
     this.error = false;
+  }
+
+  private checkEmailVerification() {
+    this.authService.verifyEmail(this.token).subscribe(
+      (res) => {
+        this.verified = true;
+        this.message =
+          'Email has been succesfully verified. Please login with your new credentials';
+      },
+      (error) => {
+        console.log(error);
+        this.error = true;
+        this.message =
+          'Soemthing went wrong to verify your email. Please contact admin.';
+      }
+    );
   }
 }

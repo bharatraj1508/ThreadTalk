@@ -38,7 +38,7 @@ export class RegisterComponent implements AfterViewInit {
       (res) => {
         this.success = true;
         this.message =
-          'Your account has been created successfully. Please login with your credentials';
+          'Your account has been created successfully. Please verify your email address.';
         this.signUpForm.resetForm();
         this.newUser = {
           first_name: '',
