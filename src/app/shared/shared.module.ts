@@ -5,6 +5,7 @@ import { WarningComponent } from './prompts/warning/warning.component';
 import { SuccessComponent } from './prompts/success/success.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { SidebarRightComponent } from './sidebar-right/sidebar-right.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,7 @@ import { SidebarRightComponent } from './sidebar-right/sidebar-right.component';
     SidebarComponent,
     SidebarRightComponent,
   ],
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   exports: [
     ErrorComponent,
     WarningComponent,
