@@ -6,6 +6,7 @@ import { SuccessComponent } from './prompts/success/success.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { SidebarRightComponent } from './sidebar-right/sidebar-right.component';
 import { RouterModule } from '@angular/router';
+import { CardComponent } from './question/card/card.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { RouterModule } from '@angular/router';
     SuccessComponent,
     SidebarComponent,
     SidebarRightComponent,
+    CardComponent,
   ],
   imports: [CommonModule, RouterModule],
   exports: [
@@ -22,6 +24,7 @@ import { RouterModule } from '@angular/router';
     SuccessComponent,
     SidebarComponent,
     SidebarRightComponent,
+    CardComponent,
   ],
 })
 export class SharedModule {}

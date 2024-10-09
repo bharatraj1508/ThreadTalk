@@ -1,7 +1,13 @@
-<div class="relative min-h-screen">
-  <app-sidebar />
-  <div class="ml-80 p-4">
+<div class="flex flex-row">
+  <div class="w-[30%] fixed left-0 h-full bg-gray-100 hidden md:block">
+    <app-sidebar />
+  </div>
+
+  <div class="md:w-[40%] md:ml-[30%] bg-gray-100">
     <router-outlet />
   </div>
-  <app-sidebar-right />
+
+  <div class="w-[30%] fixed right-0 h-full bg-gray-100 hidden md:block">
+    <app-sidebar-right />
+  </div>
 </div>
