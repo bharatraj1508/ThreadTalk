@@ -1,1 +1,60 @@
-<p>home works!</p>
+<div class="w-full px-2">
+  <div class="mt-8 mb-7">
+    <div
+      class="flex flex-col bg-white border border-t-4 border-t-green-600 shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:border-t-blue-500 dark:shadow-neutral-700/70"
+    >
+      <div class="p-4 md:p-5 space-y-4">
+        <div class="mt-1 text-sm text-gray-500 dark:text-neutral-500">
+          <div class="shrink-0 group block">
+            <div class="flex items-start space-x-3">
+              <img
+                class="inline-block size-[38px] rounded-full"
+                src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80"
+                alt="Avatar"
+              />
+              <div class="w-full">
+                <textarea
+                  id="textarea-email-label"
+                  class="py-3 px-4 block w-full border border-gray-200 rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                  rows="2"
+                  placeholder="Have something to ask ?"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex justify-end">
+          <button
+            type="button"
+            class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-green-600 text-white hover:bg-green-700 focus:outline-none focus:bg-teal-200 disabled:opacity-50 disabled:pointer-events-none dark:text-teal-500 dark:bg-teal-800/30 dark:hover:bg-teal-800/20 dark:focus:bg-teal-800/20"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-square-pen"
+            >
+              <path
+                d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
+              />
+              <path
+                d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"
+              />
+            </svg>
+            Post
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mb-6" *ngFor="let question of questions">
+    <app-card [question]="question" />
+  </div>
+</div>

@@ -12,4 +12,8 @@ export class SidebarComponent {
   logout() {
     this.authService.doLogout();
   }
+
+  reloadPage() {
+    window.location.reload();
+  }
 }
