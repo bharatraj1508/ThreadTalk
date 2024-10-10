@@ -31,7 +31,17 @@
     >
       {{ question.body }}
     </a>
+    <div class="text-xs text-gray-400 italic">
+      <p>
+        {{
+          question.views == 0
+            ? "No views yet"
+            : this.formatNumber(question.views) + " views"
+        }}
+      </p>
+    </div>
   </div>
+
   <div class="p-2 flex flex-row justify-between">
     <div class="flex flex-row items-start space-x-6 flex-1">
       <a

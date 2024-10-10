@@ -1,6 +1,7 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { QuestionsService } from '../../core/services/questionsApi/questions.service';
 import { Questions } from '../../core/interfaces/questions';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -29,11 +30,28 @@ export class HomeComponent implements OnInit {
         this.totalPages = res.totalPages;
         this.currentPage++;
         this.isLoading = false;
-        console.log(res);
+      },
+      (error) => {
+        this.isLoading = false;
+      }
+    );
+  }
+
+  postQuestion(questionForm: NgForm) {
+    const body = {
+      body: questionForm.value.question,
+    };
+
+    this.questionsApi.createQuestion(body).subscribe(
+      (res) => {
+        this.questions.unshift(res);
+
+        setTimeout(() => {
+          questionForm.reset();
+        }, 0);
       },
       (error) => {
         console.log(error);
-        this.isLoading = false;
       }
     );
   }
