@@ -1,0 +1,202 @@
+<div
+  class="flex flex-col bg-white border shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70"
+>
+  <div class="p-4 md:p-5 flex flex-col space-y-5">
+    <div class="flex flex-row items-center space-x-4">
+      <svg
+        (click)="goBack()"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="lucide lucide-arrow-left cursor-pointer"
+      >
+        <path d="m12 19-7-7 7-7" />
+        <path d="M19 12H5" />
+      </svg>
+      <p class="text-xl font-semibold">Question</p>
+    </div>
+    <hr />
+    <!--------Avatar and dropdown-------->
+    <div class="flex flex-row items-center justify-between">
+      <!--------Avatar-------->
+      <div class="shrink-0 group block">
+        <div class="flex items-center">
+          <img
+            class="inline-block shrink-0 size-[50px] rounded-full"
+            src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80"
+            alt="Avatar"
+          />
+          <div class="ms-3">
+            <h3 class="font-semibold text-gray-800 dark:text-white">
+              {{ question?.author?.first_name }}
+              {{ question?.author?.last_name }}
+            </h3>
+            <p class="text-sm font-medium text-gray-400 dark:text-neutral-500">
+              {{ question?.author?.email }}
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--------Avatar ends here-------->
+
+      <!--------Dropdown-------->
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="lucide lucide-ellipsis cursor-pointer"
+      >
+        <circle cx="12" cy="12" r="1" />
+        <circle cx="19" cy="12" r="1" />
+        <circle cx="5" cy="12" r="1" />
+      </svg>
+      <!--------Dropdown ends here-------->
+    </div>
+    <!--------Avatar and dropdown ends here-------->
+    <div>
+      <h3 class="text-lg font-bold text-gray-800 dark:text-white">
+        {{ question?.body }}
+      </h3>
+    </div>
+
+    <div
+      class="flex flex-col items-center justify-center py-4 bg-neutral-50 border border-gray-300 rounded-3xl mx-24 shadow-sm"
+    >
+      <p class="text-sm text-gray-500 italic">
+        Help {{ question?.author?.first_name }} to search for a good answer.
+      </p>
+      <a
+        class="flex flex-row space-x-1 items-center px-3 py-2 mt-4 text-blue-600 rounded-3xl border border-blue-600 hover:bg-blue-50 hover:shadow-md transition duration-300"
+        routerLink=""
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="15"
+          height="15"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-pencil"
+        >
+          <path
+            d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"
+          />
+          <path d="m15 5 4 4" />
+        </svg>
+        <p class="text-sm text-blue-600">Answer</p>
+      </a>
+    </div>
+
+    <div class="flex flex-row items-center justify-items-start space-x-3">
+      <div class="flex flex-row items-center border border-gray-300 rounded-xl">
+        <div
+          class="flex flex-row items-center rounded-xl rounded-r-none cursor-pointer px-2 py-1.5 border-r border-gray-500 hover:bg-neutral-100 hover:shadow-md transition duration-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-arrow-big-up"
+          >
+            <path d="M9 18v-6H5l7-7 7 7h-4v6H9z" />
+          </svg>
+          <p class="text-sm">Upvote</p>
+        </div>
+
+        <!-----Downvote----->
+        <div
+          class="cursor-pointer px-2 py-1.5 rounded-r-xl hover:bg-neutral-100 hover:shadow-md transition duration-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-arrow-big-down"
+          >
+            <path d="M15 6v6h4l-7 7-7-7h4V6h6z" />
+          </svg>
+        </div>
+      </div>
+
+      <a
+        routerLink=""
+        class="rounded-full hover:bg-neutral-100 p-2 hover:shadow-md transition duration-300"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-rss"
+        >
+          <path d="M4 11a9 9 0 0 1 9 9" />
+          <path d="M4 4a16 16 0 0 1 16 16" />
+          <circle cx="5" cy="19" r="1" />
+        </svg>
+      </a>
+
+      <a
+        routerLink=""
+        class="rounded-full hover:bg-neutral-100 p-2 hover:shadow-md transition duration-300"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-share-2"
+        >
+          <circle cx="18" cy="5" r="3" />
+          <circle cx="6" cy="12" r="3" />
+          <circle cx="18" cy="19" r="3" />
+          <line x1="8.59" x2="15.42" y1="13.51" y2="17.49" />
+          <line x1="15.41" x2="8.59" y1="6.51" y2="10.49" />
+        </svg>
+      </a>
+    </div>
+  </div>
+  <div
+    class="bg-neutral-100 border-t rounded-b-xl py-3 px-4 md:py-4 md:px-5 dark:bg-neutral-900 dark:border-neutral-700"
+  >
+    <p class="mt-1 text-sm text-gray-500 dark:text-neutral-500">
+      {{ date }}
+    </p>
+  </div>
+</div>

@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
   currentPage = 1;
   totalPages = 1;
   isLoading = false;
+  selectedOption: string = 'TOP';
 
   constructor(private questionsApi: QuestionsService) {}
 
@@ -24,17 +25,19 @@ export class HomeComponent implements OnInit {
     if (this.isLoading || this.currentPage > this.totalPages) return;
 
     this.isLoading = true;
-    this.questionsApi.getQuestions(this.currentPage, 50, 'TOP').subscribe(
-      (res) => {
-        this.questions.push(...res.questions);
-        this.totalPages = res.totalPages;
-        this.currentPage++;
-        this.isLoading = false;
-      },
-      (error) => {
-        this.isLoading = false;
-      }
-    );
+    this.questionsApi
+      .getQuestions(this.currentPage, 50, this.selectedOption)
+      .subscribe(
+        (res) => {
+          this.questions.push(...res.questions);
+          this.totalPages = res.totalPages;
+          this.currentPage++;
+          this.isLoading = false;
+        },
+        (error) => {
+          this.isLoading = false;
+        }
+      );
   }
 
   postQuestion(questionForm: NgForm) {
@@ -54,6 +57,24 @@ export class HomeComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  onSelectChange(event: Event) {
+    const selectElement = event.target as HTMLSelectElement;
+    this.selectedOption = selectElement.value;
+
+    this.questions = [];
+    this.currentPage = 1;
+    this.totalPages = 1;
+
+    this.loadQuestions();
+  }
+
+  openDropdown() {
+    const dropdown = document.getElementById('dropdown');
+    if (dropdown) {
+      dropdown.classList.remove('hidden');
+    }
   }
 
   @HostListener('window:scroll', [])

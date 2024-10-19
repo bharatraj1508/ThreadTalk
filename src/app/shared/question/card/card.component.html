@@ -27,11 +27,24 @@
   <div class="p-4 md:p-5">
     <a
       class="mt-2 text-gray-500 dark:text-neutral-400 hover:underline"
-      routerLink=""
+      [routerLink]="['/d', question.author._id, 'q', question._id]"
     >
       {{ question.body }}
     </a>
-    <div class="text-xs text-gray-400 italic">
+    <div class="flex flex-row space-x-2 text-xs mt-1.5 text-gray-400 italic">
+      <a
+        [routerLink]="['/d', question.author._id, 'q', question._id]"
+        class="pr-2 border-r border-gray-400"
+      >
+        {{ question.answers == 0 ? "No answers yet" : "" }}
+        <span routerLink="/d/home" class="cursor-pointer hover:underline">
+          {{
+            question.answers > 0
+              ? this.formatNumber(question.answers) + " answers"
+              : ""
+          }}
+        </span>
+      </a>
       <p>
         {{
           question.views == 0
@@ -43,15 +56,15 @@
   </div>
 
   <div class="p-2 flex flex-row justify-between">
-    <div class="flex flex-row items-start space-x-6 flex-1">
+    <div class="flex flex-row items-start space-x-4 flex-1">
       <a
-        class="flex flex-row space-x-1 items-center p-1.5 rounded-lg border border-gray-300 bg-gray-50 hover:bg-gray-100"
+        class="flex flex-row space-x-1 items-center px-3 py-2 rounded-xl border border-gray-300 hover:bg-neutral-100 hover:shadow-md transition duration-300"
         routerLink=""
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="18"
-          height="18"
+          width="15"
+          height="15"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -69,13 +82,13 @@
       </a>
       <!------------------------------------->
       <a
-        class="flex flex-row space-x-1 items-center p-1.5 rounded-lg border border-gray-300 bg-gray-50 hover:bg-gray-100"
+        class="flex flex-row space-x-1 items-center px-3 py-2 rounded-xl hover:bg-neutral-100 hover:shadow-md transition duration-300"
         routerLink=""
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="18"
-          height="18"
+          width="15"
+          height="15"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -93,13 +106,13 @@
       </a>
       <!------------------------------------->
       <a
-        class="flex flex-row space-x-1 items-center p-1.5 rounded-lg border border-gray-300 bg-gray-50 hover:bg-gray-100"
+        class="flex flex-row space-x-1 items-center px-3 py-2 rounded-xl hover:bg-neutral-100 hover:shadow-md transition duration-300"
         routerLink=""
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="18"
-          height="18"
+          width="15"
+          height="15"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -117,13 +130,13 @@
     </div>
     <div>
       <a
-        class="flex flex-row space-x-1 items-center p-1.5 rounded-lg border border-gray-300 bg-gray-50 hover:bg-gray-100"
+        class="flex flex-row space-x-1 items-center px-3 py-2 rounded-xl border border-gray-300 hover:bg-neutral-100 hover:shadow-md transition duration-300"
         routerLink=""
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="18"
-          height="18"
+          width="15"
+          height="15"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"

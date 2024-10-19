@@ -24,6 +24,10 @@ export class QuestionsService {
     );
   }
 
+  getSingleQuestion(id: string): Observable<Questions> {
+    return this.http.get<Questions>(`${this.url}/api/questions/${id}`);
+  }
+
   createQuestion(body: Object): Observable<Questions> {
     return this.http.post<Questions>(`${this.url}/api/questions`, body);
   }

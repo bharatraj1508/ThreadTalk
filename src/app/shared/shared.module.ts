@@ -7,6 +7,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { SidebarRightComponent } from './sidebar-right/sidebar-right.component';
 import { RouterModule } from '@angular/router';
 import { CardComponent } from './question/card/card.component';
+import { ViewComponent } from './question/view/view.component';
+import { AnsCardComponent } from './answer/ans-card/ans-card.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,8 @@ import { CardComponent } from './question/card/card.component';
     SidebarComponent,
     SidebarRightComponent,
     CardComponent,
+    ViewComponent,
+    AnsCardComponent,
   ],
   imports: [CommonModule, RouterModule],
   exports: [
@@ -25,6 +29,8 @@ import { CardComponent } from './question/card/card.component';
     SidebarComponent,
     SidebarRightComponent,
     CardComponent,
+    ViewComponent,
+    AnsCardComponent,
   ],
 })
 export class SharedModule {}
