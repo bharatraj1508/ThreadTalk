@@ -1,4 +1,29 @@
 <div class="mt-8">
-  <app-view [question]="question" [date]="formatedDate" />
+  <app-view
+    [question]="question"
+    (answerFlagEmitter)="getAnswerFlag($event)"
+    [date]="formatedDate"
+  />
+  <div class="my-2 px-2">
+    <select
+      id="sortBy"
+      class="block w-fit p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-blue-500"
+    >
+      <option value="TOP">Top</option>
+      <option value="NEW">New</option>
+      <option value="HOT">Hot</option>
+    </select>
+  </div>
   <app-ans-card [answers]="answers" />
+</div>
+
+<div id="answer-popup" class="hidden">
+  <div class="fixed inset-0 flex items-center justify-center z-50">
+    <div class="absolute inset-0 bg-black opacity-50"></div>
+    <app-ans-popup
+      [question]="question"
+      (answerFlagEmitter)="getAnswerFlag($event)"
+      class="relative bg-white rounded-lg shadow-lg p-4 z-10 w-[50%] h-[60%]"
+    />
+  </div>
 </div>

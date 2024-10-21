@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { CardComponent } from './question/card/card.component';
 import { ViewComponent } from './question/view/view.component';
 import { AnsCardComponent } from './answer/ans-card/ans-card.component';
+import { AnsPopupComponent } from './answer/ans-popup/ans-popup.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { AnsCardComponent } from './answer/ans-card/ans-card.component';
     CardComponent,
     ViewComponent,
     AnsCardComponent,
+    AnsPopupComponent,
   ],
   imports: [CommonModule, RouterModule],
   exports: [
@@ -31,6 +33,7 @@ import { AnsCardComponent } from './answer/ans-card/ans-card.component';
     CardComponent,
     ViewComponent,
     AnsCardComponent,
+    AnsPopupComponent,
   ],
 })
 export class SharedModule {}

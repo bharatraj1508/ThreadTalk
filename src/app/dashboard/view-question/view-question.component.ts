@@ -76,6 +76,16 @@ export class ViewQuestionComponent implements OnInit {
     return formatDate(t);
   }
 
+  getAnswerFlag(event: boolean) {
+    if (event) {
+      const element = document.getElementById('answer-popup');
+      const isHidden = element?.classList.contains('hidden');
+
+      if (isHidden) return element?.classList.remove('hidden');
+      element?.classList.add('hidden');
+    }
+  }
+
   @HostListener('window:scroll', [])
   onScroll(): void {
     if (
