@@ -1,19 +1,20 @@
 import { User } from './user';
 
-export interface Questions {
+export interface Answers {
   _id: string;
+  question_id: string;
   body: string;
   author: User;
-  views: number;
-  answers: number;
+  upvotes: number;
+  downvotes: number;
   faker: boolean;
   created_at: string;
   updated_at: string;
 }
 
-export interface QuestionsPagination {
+export interface AnswersPagination {
   total: number;
   page: number;
   totalPages: number;
-  questions: Questions[];
+  answers: Answers[];
 }

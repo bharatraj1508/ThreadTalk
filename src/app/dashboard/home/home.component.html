@@ -64,7 +64,34 @@
       </form>
     </div>
   </div>
-  <div class="mb-6" *ngFor="let question of questions">
-    <app-card [question]="question" />
+  <div class="my-2">
+    <select
+      id="sortBy"
+      (change)="onSelectChange($event)"
+      class="block w-fit p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-blue-500"
+    >
+      <option value="TOP">Top</option>
+      <option value="NEW">New</option>
+      <option value="HOT">Hot</option>
+    </select>
+  </div>
+  <div class="mb-3" *ngFor="let question of questions">
+    <app-card
+      (answerFlagEmitter)="getAnswerFlag($event)"
+      (currentQuestion)="getCurrentQuestion($event)"
+      [question]="question"
+    />
+  </div>
+</div>
+
+<div id="answer-popup" class="hidden">
+  <div class="fixed inset-0 flex items-center justify-center z-50">
+    <div class="absolute inset-0 bg-black opacity-65"></div>
+    <app-ans-popup
+      (answerEmitter)="getAnswer($event)"
+      (answerFlagEmitter)="getAnswerFlag($event)"
+      [question]="this.currentQuestion!"
+      class="relative bg-white rounded-xl shadow-lg p-4 z-10 md:w-[50%]"
+    />
   </div>
 </div>

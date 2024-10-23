@@ -2,6 +2,8 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { QuestionsService } from '../../core/services/questionsApi/questions.service';
 import { Questions } from '../../core/interfaces/questions';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Answers } from '../../core/interfaces/answers';
 
 @Component({
   selector: 'app-home',
@@ -13,8 +15,10 @@ export class HomeComponent implements OnInit {
   currentPage = 1;
   totalPages = 1;
   isLoading = false;
+  selectedOption: string = 'TOP';
+  currentQuestion: Questions | null = null;
 
-  constructor(private questionsApi: QuestionsService) {}
+  constructor(private questionsApi: QuestionsService, private router: Router) {}
 
   ngOnInit(): void {
     this.loadQuestions();
@@ -24,17 +28,19 @@ export class HomeComponent implements OnInit {
     if (this.isLoading || this.currentPage > this.totalPages) return;
 
     this.isLoading = true;
-    this.questionsApi.getQuestions(this.currentPage, 50, 'TOP').subscribe(
-      (res) => {
-        this.questions.push(...res.questions);
-        this.totalPages = res.totalPages;
-        this.currentPage++;
-        this.isLoading = false;
-      },
-      (error) => {
-        this.isLoading = false;
-      }
-    );
+    this.questionsApi
+      .getQuestions(this.currentPage, 50, this.selectedOption)
+      .subscribe(
+        (res) => {
+          this.questions.push(...res.questions);
+          this.totalPages = res.totalPages;
+          this.currentPage++;
+          this.isLoading = false;
+        },
+        (error) => {
+          this.isLoading = false;
+        }
+      );
   }
 
   postQuestion(questionForm: NgForm) {
@@ -54,6 +60,46 @@ export class HomeComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  onSelectChange(event: Event) {
+    const selectElement = event.target as HTMLSelectElement;
+    this.selectedOption = selectElement.value;
+
+    this.questions = [];
+    this.currentPage = 1;
+    this.totalPages = 1;
+
+    this.loadQuestions();
+  }
+
+  openDropdown() {
+    const dropdown = document.getElementById('dropdown');
+    if (dropdown) {
+      dropdown.classList.remove('hidden');
+    }
+  }
+
+  getAnswerFlag(event: any) {
+    if (event) {
+      const element = document.getElementById('answer-popup');
+      const isHidden = element?.classList.contains('hidden');
+
+      if (isHidden) return element?.classList.remove('hidden');
+      element?.classList.add('hidden');
+    }
+  }
+
+  getCurrentQuestion(event: Questions) {
+    this.currentQuestion = event;
+  }
+
+  getAnswer(event: Answers) {
+    if (event) {
+      this.router.navigate([
+        `d/${this.currentQuestion!.author._id}/q/${this.currentQuestion!._id}`,
+      ]);
+    }
   }
 
   @HostListener('window:scroll', [])

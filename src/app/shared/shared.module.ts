@@ -7,6 +7,11 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { SidebarRightComponent } from './sidebar-right/sidebar-right.component';
 import { RouterModule } from '@angular/router';
 import { CardComponent } from './question/card/card.component';
+import { ViewComponent } from './question/view/view.component';
+import { AnsCardComponent } from './answer/ans-card/ans-card.component';
+import { AnsPopupComponent } from './answer/ans-popup/ans-popup.component';
+import { QuillModule } from 'ngx-quill';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,8 +21,11 @@ import { CardComponent } from './question/card/card.component';
     SidebarComponent,
     SidebarRightComponent,
     CardComponent,
+    ViewComponent,
+    AnsCardComponent,
+    AnsPopupComponent,
   ],
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, FormsModule, QuillModule],
   exports: [
     ErrorComponent,
     WarningComponent,
@@ -25,6 +33,9 @@ import { CardComponent } from './question/card/card.component';
     SidebarComponent,
     SidebarRightComponent,
     CardComponent,
+    ViewComponent,
+    AnsCardComponent,
+    AnsPopupComponent,
   ],
 })
 export class SharedModule {}

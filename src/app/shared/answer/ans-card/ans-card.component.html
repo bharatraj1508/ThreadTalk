@@ -1,0 +1,98 @@
+<div>
+  <div *ngFor="let answer of answers">
+    <div class="my-1.5">
+      <div
+        class="flex flex-col space-y-3 p-4 md:p-5 bg-white border shadow-sm rounded-xl hover:shadow-lg focus:outline-none focus:shadow-lg transition dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70"
+      >
+        <div class="flex items-center">
+          <img
+            class="inline-block size-[38px] rounded-full"
+            src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80"
+            alt="Avatar"
+          />
+          <div class="ms-3">
+            <h3 class="font-semibold text-gray-800 dark:text-white">
+              {{ answer.author.first_name }} {{ answer.author.last_name }}
+            </h3>
+            <p class="text-sm font-medium text-gray-400 dark:text-neutral-500">
+              {{ answer.author.email }}
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <p
+            [innerHTML]="answer.body"
+            class="mt-1 text-gray-500 dark:text-neutral-400"
+          ></p>
+        </div>
+
+        <div class="flex flex-row space-x-2 items-center">
+          <div
+            class="flex flex-row items-center border border-gray-300 rounded-xl"
+          >
+            <div
+              class="flex flex-row items-center rounded-xl rounded-r-none cursor-pointer p-1 border-r border-gray-500 hover:bg-neutral-100 hover:shadow-md transition duration-300"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-arrow-big-up"
+              >
+                <path d="M9 18v-6H5l7-7 7 7h-4v6H9z" />
+              </svg>
+              <p class="text-sm">Upvote</p>
+            </div>
+
+            <!-----Downvote----->
+            <div
+              class="cursor-pointer p-1 rounded-r-xl hover:bg-neutral-100 hover:shadow-md transition duration-300"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-arrow-big-down"
+              >
+                <path d="M15 6v6h4l-7 7-7-7h4V6h6z" />
+              </svg>
+            </div>
+          </div>
+
+          <a
+            routerLink=""
+            class="rounded-full hover:bg-neutral-100 p-2 hover:shadow-md transition duration-300"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-message-circle"
+            >
+              <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
