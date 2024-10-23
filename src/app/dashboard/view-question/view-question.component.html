@@ -23,6 +23,7 @@
     <app-ans-popup
       [question]="question"
       (answerFlagEmitter)="getAnswerFlag($event)"
+      (answerEmitter)="getAnswer($event)"
       class="relative bg-white rounded-xl shadow-lg p-4 z-10 md:w-[50%]"
     />
   </div>

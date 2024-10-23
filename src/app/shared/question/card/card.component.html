@@ -14,10 +14,10 @@
           />
           <div class="ms-3">
             <h3 class="font-semibold text-gray-800 dark:text-white">
-              {{ question.author.first_name }} {{ question.author.last_name }}
+              {{ question!.author.first_name }} {{ question!.author.last_name }}
             </h3>
             <p class="text-sm font-medium text-gray-400 dark:text-neutral-500">
-              {{ question.author.email }}
+              {{ question!.author.email }}
             </p>
           </div>
         </div>
@@ -27,29 +27,29 @@
   <div class="p-4 md:p-5">
     <a
       class="mt-2 text-gray-500 dark:text-neutral-400 hover:underline"
-      [routerLink]="['/d', question.author._id, 'q', question._id]"
+      [routerLink]="['/d', question!.author._id, 'q', question!._id]"
     >
-      {{ question.body }}
+      {{ question!.body }}
     </a>
     <div class="flex flex-row space-x-2 text-xs mt-1.5 text-gray-400 italic">
-      <a
-        [routerLink]="['/d', question.author._id, 'q', question._id]"
-        class="pr-2 border-r border-gray-400"
-      >
-        {{ question.answers == 0 ? "No answers yet" : "" }}
-        <span routerLink="/d/home" class="cursor-pointer hover:underline">
+      <div class="pr-2 border-r border-gray-400">
+        {{ question!.answers == 0 ? "No answers yet" : "" }}
+        <a
+          [routerLink]="['/d', question!.author._id, 'q', question!._id]"
+          class="cursor-pointer hover:underline"
+        >
           {{
-            question.answers > 0
-              ? this.formatNumber(question.answers) + " answers"
+            question!.answers > 0
+              ? this.formatNumber(question!.answers) + " answers"
               : ""
           }}
-        </span>
-      </a>
+        </a>
+      </div>
       <p>
         {{
-          question.views == 0
+          question!.views == 0
             ? "No views yet"
-            : this.formatNumber(question.views) + " views"
+            : this.formatNumber(question!.views) + " views"
         }}
       </p>
     </div>
@@ -57,9 +57,9 @@
 
   <div class="p-2 flex flex-row justify-between">
     <div class="flex flex-row items-start space-x-4 flex-1">
-      <a
+      <button
         class="flex flex-row space-x-1 items-center px-3 py-2 rounded-xl border border-gray-300 hover:bg-neutral-100 hover:shadow-md transition duration-300"
-        routerLink=""
+        (click)="onClick()"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -79,11 +79,11 @@
           <path d="m15 5 4 4" />
         </svg>
         <p class="text-sm text-gray-700">Answer</p>
-      </a>
+      </button>
       <!------------------------------------->
       <a
         class="flex flex-row space-x-1 items-center px-3 py-2 rounded-xl hover:bg-neutral-100 hover:shadow-md transition duration-300"
-        routerLink=""
+        [routerLink]="['/d', question!.author._id, 'q', question!._id]"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

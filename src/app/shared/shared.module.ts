@@ -11,6 +11,7 @@ import { ViewComponent } from './question/view/view.component';
 import { AnsCardComponent } from './answer/ans-card/ans-card.component';
 import { AnsPopupComponent } from './answer/ans-popup/ans-popup.component';
 import { QuillModule } from 'ngx-quill';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { QuillModule } from 'ngx-quill';
     AnsCardComponent,
     AnsPopupComponent,
   ],
-  imports: [CommonModule, RouterModule, QuillModule],
+  imports: [CommonModule, RouterModule, FormsModule, QuillModule],
   exports: [
     ErrorComponent,
     WarningComponent,

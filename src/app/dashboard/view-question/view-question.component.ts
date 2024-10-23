@@ -86,6 +86,10 @@ export class ViewQuestionComponent implements OnInit {
     }
   }
 
+  getAnswer(event: Answers) {
+    this.answers.unshift(event);
+  }
+
   @HostListener('window:scroll', [])
   onScroll(): void {
     if (

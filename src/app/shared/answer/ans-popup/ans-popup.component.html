@@ -40,25 +40,30 @@
     </div>
   </div>
 
-  <div class="flex flex-col px-2.5 space-y-1 h-full">
-    <h3 class="text-lg font-bold text-gray-800 dark:text-white">
-      {{ question?.body }}
-    </h3>
+  <form #answerForm="ngForm" (ngSubmit)="postAnswer()">
+    <div class="flex flex-col px-2.5 space-y-1 h-full">
+      <h3 class="text-lg font-bold text-gray-800 dark:text-white">
+        {{ question?.body }}
+      </h3>
 
-    <quill-editor
-      [modules]="QuillConfiguration"
-      [placeholder]="'Writer your answer...'"
-    ></quill-editor>
-  </div>
+      <quill-editor
+        [modules]="QuillConfiguration"
+        [placeholder]="'Writer your answer...'"
+        [(ngModel)]="editorContent"
+        [ngModelOptions]="{ standalone: true }"
+      ></quill-editor>
+    </div>
 
-  <hr />
+    <hr />
 
-  <div class="flex flex-row items-center justify-end">
-    <button
-      type="button"
-      class="py-2.5 px-5 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-green-500 text-green-500 hover:border-green-300 hover:text-white hover:bg-green-500 transition-all duration-300 focus:outline-none focus:border-teal-400 focus:text-teal-400 disabled:opacity-50 disabled:pointer-events-none"
-    >
-      Post
-    </button>
-  </div>
+    <div class="flex flex-row items-center justify-end mt-4">
+      <button
+        type="submit"
+        [disabled]="this.submitted"
+        class="py-2.5 px-5 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-green-500 text-green-500 hover:border-green-300 hover:text-white hover:bg-green-500 transition-all duration-300 focus:outline-none focus:border-teal-400 focus:text-teal-400 disabled:opacity-50 disabled:pointer-events-none"
+      >
+        Post
+      </button>
+    </div>
+  </form>
 </div>

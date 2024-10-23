@@ -24,7 +24,7 @@ export class AnswersService {
     );
   }
 
-  // createQuestion(body: Object): Observable<Questions> {
-  //   return this.http.post<Questions>(`${this.url}/api/questions`, body);
-  // }
+  createAnswer(qid: string, body: Object): Observable<Answers> {
+    return this.http.post<Answers>(`${this.url}/api/answers/${qid}`, body);
+  }
 }

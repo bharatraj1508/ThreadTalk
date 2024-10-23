@@ -21,9 +21,10 @@
         </div>
 
         <div>
-          <p class="mt-1 text-gray-500 dark:text-neutral-400">
-            {{ answer.body }}
-          </p>
+          <p
+            [innerHTML]="answer.body"
+            class="mt-1 text-gray-500 dark:text-neutral-400"
+          ></p>
         </div>
 
         <div class="flex flex-row space-x-2 items-center">
