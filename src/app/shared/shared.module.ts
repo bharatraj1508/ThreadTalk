@@ -10,6 +10,7 @@ import { CardComponent } from './question/card/card.component';
 import { ViewComponent } from './question/view/view.component';
 import { AnsCardComponent } from './answer/ans-card/ans-card.component';
 import { AnsPopupComponent } from './answer/ans-popup/ans-popup.component';
+import { QuillModule } from 'ngx-quill';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { AnsPopupComponent } from './answer/ans-popup/ans-popup.component';
     AnsCardComponent,
     AnsPopupComponent,
   ],
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, QuillModule],
   exports: [
     ErrorComponent,
     WarningComponent,

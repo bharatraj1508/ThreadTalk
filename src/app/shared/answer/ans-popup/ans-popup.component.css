@@ -1,0 +1,10 @@
+.ql-toolbar {
+  @apply rounded-full shadow-xl mt-3 mb-2 bg-neutral-100;
+  padding: 12px !important;
+  border: none !important;
+}
+
+.ql-container {
+  @apply rounded-b-lg h-48 text-sm;
+  border: none !important;
+}

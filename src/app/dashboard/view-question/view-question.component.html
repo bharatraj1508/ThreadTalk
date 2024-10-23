@@ -19,11 +19,11 @@
 
 <div id="answer-popup" class="hidden">
   <div class="fixed inset-0 flex items-center justify-center z-50">
-    <div class="absolute inset-0 bg-black opacity-50"></div>
+    <div class="absolute inset-0 bg-black opacity-65"></div>
     <app-ans-popup
       [question]="question"
       (answerFlagEmitter)="getAnswerFlag($event)"
-      class="relative bg-white rounded-lg shadow-lg p-4 z-10 w-[50%] h-[60%]"
+      class="relative bg-white rounded-xl shadow-lg p-4 z-10 md:w-[50%]"
     />
   </div>
 </div>
