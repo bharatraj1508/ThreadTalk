@@ -12,6 +12,7 @@ import { AnsCardComponent } from './answer/ans-card/ans-card.component';
 import { AnsPopupComponent } from './answer/ans-popup/ans-popup.component';
 import { QuillModule } from 'ngx-quill';
 import { FormsModule } from '@angular/forms';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { FormsModule } from '@angular/forms';
     ViewComponent,
     AnsCardComponent,
     AnsPopupComponent,
+    LoadingComponent,
   ],
   imports: [CommonModule, RouterModule, FormsModule, QuillModule],
   exports: [
@@ -36,6 +38,7 @@ import { FormsModule } from '@angular/forms';
     ViewComponent,
     AnsCardComponent,
     AnsPopupComponent,
+    LoadingComponent,
   ],
 })
 export class SharedModule {}

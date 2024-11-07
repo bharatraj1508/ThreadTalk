@@ -9,7 +9,7 @@ import { formatDate } from '../../core/util/helperFunction';
 @Component({
   selector: 'app-view-question',
   templateUrl: './view-question.component.html',
-  styleUrls: ['./view-question.component.css'], // Fixed 'styleUrl' to 'styleUrls'
+  styleUrls: ['./view-question.component.css'],
 })
 export class ViewQuestionComponent implements OnInit {
   uid: string = '';
@@ -20,6 +20,8 @@ export class ViewQuestionComponent implements OnInit {
   currentPage: number = 1;
   hasMoreAnswers: boolean = true;
   isLoading: boolean = false;
+  contentLoading: boolean = false;
+  answersLoading: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -35,6 +37,7 @@ export class ViewQuestionComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.contentLoading = true;
     this.loadQuestion();
     this.loadAnswers();
   }
@@ -44,6 +47,7 @@ export class ViewQuestionComponent implements OnInit {
       (res) => {
         this.question = res;
         this.formatedDate = this.dateFormat(this.question.created_at);
+        this.contentLoading = false;
       },
       (error) => {
         console.log(error);
@@ -52,6 +56,7 @@ export class ViewQuestionComponent implements OnInit {
   }
 
   loadAnswers() {
+    this.answersLoading = true;
     if (!this.hasMoreAnswers || this.isLoading) return;
 
     this.isLoading = true;
@@ -64,6 +69,7 @@ export class ViewQuestionComponent implements OnInit {
           this.hasMoreAnswers = false;
         }
         this.isLoading = false;
+        this.answersLoading = false;
       },
       (error) => {
         console.log(error);
