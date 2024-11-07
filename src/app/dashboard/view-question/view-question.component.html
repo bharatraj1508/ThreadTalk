@@ -1,4 +1,8 @@
-<div class="mt-8">
+<div id="loading" *ngIf="contentLoading">
+  <app-loading />
+</div>
+
+<div id="content" class="mt-8" *ngIf="!contentLoading">
   <app-view
     [question]="question"
     (answerFlagEmitter)="getAnswerFlag($event)"
@@ -15,6 +19,9 @@
     </select>
   </div>
   <app-ans-card [answers]="answers" />
+  <div id="loading" *ngIf="answersLoading">
+    <app-loading />
+  </div>
 </div>
 
 <div id="answer-popup" class="hidden">

@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
   isLoading = false;
   selectedOption: string = 'TOP';
   currentQuestion: Questions | null = null;
+  contentLoading: boolean = false; // this will check if the contennt is loaded succesffuly in response. So, loading screen can be loaded
 
   constructor(private questionsApi: QuestionsService, private router: Router) {}
 
@@ -28,6 +29,7 @@ export class HomeComponent implements OnInit {
     if (this.isLoading || this.currentPage > this.totalPages) return;
 
     this.isLoading = true;
+    this.contentLoading = true;
     this.questionsApi
       .getQuestions(this.currentPage, 50, this.selectedOption)
       .subscribe(
@@ -36,6 +38,7 @@ export class HomeComponent implements OnInit {
           this.totalPages = res.totalPages;
           this.currentPage++;
           this.isLoading = false;
+          this.contentLoading = false;
         },
         (error) => {
           this.isLoading = false;
